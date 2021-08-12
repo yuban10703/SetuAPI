@@ -8,8 +8,7 @@ from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel, Field
 
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
+loop = asyncio.get_event_loop()
 
 client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('mongodb'), io_loop=loop)
 mydb = client[os.getenv('db')]
