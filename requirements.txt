@@ -2,3 +2,4 @@ fastapi
 motor
 orjson
 uvicorn
+dnspython
