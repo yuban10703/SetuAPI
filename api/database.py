@@ -9,13 +9,13 @@ class DataBase:
         self.db = None
         self.collection = None
 
-    async def connect_db(self):
+    def connect_db(self):
         """Create database connection."""
         client = AsyncIOMotorClient(os.getenv('mongodb'))
         self.db = client[os.getenv('db')]
         self.collection = self.db[os.getenv('col')]
 
-    async def close_db(self):
+    def close_db(self):
         """Close database connection."""
         self.client.close()
 
