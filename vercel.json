@@ -6,9 +6,7 @@
   ],
   "routes": [
     { "src": "/", "dest": "/index.html" },
-    { "src": "/api/date", "dest": "/api/date.py" },
-    { "src": "/api/ip/(.*)", "dest": "/api/ip_query.py" },
-    { "src": "/api/(.*)", "dest": "/api/web.py" },
+    { "src": "/api/(.*)", "dest": "/api/main.py" },
     { "src": "/(.*)", "status": 404, "dest": "/404.html" }
   ]
 }
