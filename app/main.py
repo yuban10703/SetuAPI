@@ -20,7 +20,7 @@ app = FastAPI(
 async def setu_get(r18: Union[bool, None] = None,
                    num: int = Query(1, ge=1, le=30),
                    tags: Set[str] = Query(set())):
-    condition: dict = {'r18': r18} if r18 else {}
+    condition: dict = {} if r18 is None else {'r18': r18}
     condition_and = []
     for tag in tags:
         if not tag.isspace():  # tag不为空时
@@ -35,7 +35,7 @@ async def setu_get(r18: Union[bool, None] = None,
 
 @app.post("/setu", response_model=Setu_out)
 async def setu_post(item: Item):
-    condition: dict = {'r18': item.r18} if item.r18 else {}
+    condition: dict = {} if item.r18 is None else {'r18': item.r18}
     condition_and = []
     for tag in item.tags:
         if not tag.isspace():  # tag不为空时
