@@ -1,3 +1,4 @@
+import asyncio
 import os
 import re
 from typing import Optional, Set
@@ -7,7 +8,10 @@ from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel, Field
 
-client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('mongodb'))
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+
+client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv('mongodb'), io_loop=loop)
 mydb = client[os.getenv('db')]
 collection = mydb[os.getenv('col')]
 
