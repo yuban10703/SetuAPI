@@ -29,9 +29,9 @@ app = FastAPI(
     title="setu",
     description="emmm",
     version="0.1.0",
-    # openapi_url="/fastapi/data_manger.json",
-    # docs_url="/fastapi/docs",
-    # redoc_url="/fastapi/redoc"
+    openapi_url="/api/data_manger.json",
+    docs_url="/api/docs",
+    redoc_url="/api/redoc"
 )
 
 
