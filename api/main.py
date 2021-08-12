@@ -26,6 +26,16 @@ app = FastAPI(
 )
 
 
+@app.on_event("startup")
+async def startup_event():
+    await db.connect_db()
+
+
+@app.on_event("shutdown")
+def shutdown_event():
+    await db.close_db()
+
+
 @app.get('/setu', response_class=ORJSONResponse)
 async def setu_get(r18: bool = False,
                    num: int = Query(1, ge=1, le=30),
@@ -61,10 +71,6 @@ async def setu_post(item: Item):
 @app.get('/')
 async def hello():
     return {'message': 'Hello world!'}
-
-
-app.add_event_handler("startup", db.connect_db)
-app.add_event_handler("shutdown", db.close_db)
 
 # if __name__ == '__main__':
 #     import uvicorn
