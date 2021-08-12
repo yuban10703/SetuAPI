@@ -66,6 +66,11 @@ async def setu_post(item: Item):
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
     return {'code': 200, 'count': len(setus), 'tags': [i['tags'].pattern for i in condition_and], 'data': setus}
 
+
+@app.get('/')
+async def hello():
+    return {'message': 'Hello world!'}
+
 #
 # if __name__ == '__main__':
 #     import uvicorn
