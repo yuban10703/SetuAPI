@@ -1,5 +1,5 @@
-import re
 import os
+import re
 from typing import Optional, Set
 
 import motor.motor_asyncio
@@ -65,3 +65,9 @@ async def setu_post(item: Item):
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
     return {'code': 200, 'count': len(setus), 'tags': [i['tags'].pattern for i in condition_and], 'data': setus}
+
+
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run('main:app', host="0.0.0.0", port=80, reload=True)
