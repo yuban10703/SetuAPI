@@ -6,6 +6,6 @@
   ],
   "routes": [
     { "src": "/", "dest": "/index.html" },
-    { "src": "/(.*)", "status": 404, "dest": "/api/main.py" }
+    { "src": "/api/(.*)", "status": 404, "dest": "/api/main.py" }
   ]
 }
