@@ -29,13 +29,13 @@ app = FastAPI(
     title="setu",
     description="emmm",
     version="0.1.0",
-    openapi_url="/api/data_manger.json",
-    docs_url="/api/docs",
-    redoc_url="/api/redoc"
+    # openapi_url="/api/data_manger.json",
+    # docs_url="/api/docs",
+    # redoc_url="/api/redoc"
 )
 
 
-@app.get('/api/setu', response_class=ORJSONResponse)
+@app.get('/setu', response_class=ORJSONResponse)
 async def setu_get(r18: bool = False,
                    num: int = Query(1, ge=1, le=30),
                    tags: Set[str] = Query(set())):
@@ -52,7 +52,7 @@ async def setu_get(r18: bool = False,
     return {'code': 200, 'count': len(setus), 'tags': [i['tags'].pattern for i in condition_and], 'data': setus}
 
 
-@app.post("/api/setu", response_class=ORJSONResponse)
+@app.post("/setu", response_class=ORJSONResponse)
 async def setu_post(item: Item):
     condition = {'r18': item.r18}
     condition_and = []
@@ -66,8 +66,8 @@ async def setu_post(item: Item):
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
     return {'code': 200, 'count': len(setus), 'tags': [i['tags'].pattern for i in condition_and], 'data': setus}
 
-
-if __name__ == '__main__':
-    import uvicorn
-
-    uvicorn.run('main:app', host="0.0.0.0", port=80, reload=True)
+#
+# if __name__ == '__main__':
+#     import uvicorn
+#
+#     uvicorn.run('main:app', host="0.0.0.0", port=80, reload=True)
