@@ -5,7 +5,7 @@ from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel, Field
 
-from database import DataBase
+from .database import DataBase
 
 db = DataBase()
 
