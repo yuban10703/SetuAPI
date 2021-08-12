@@ -3,3 +3,4 @@ motor
 orjson
 uvicorn
 dnspython
+pydantic
