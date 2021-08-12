@@ -32,7 +32,7 @@ async def startup_event():
 
 
 @app.on_event("shutdown")
-def shutdown_event():
+async def shutdown_event():
     await db.close_db()
 
 
