@@ -1,0 +1,1 @@
+ docker run -d -p 8080:80 -e mongodb="mongodb+srv://api:yuban10703.xyz@setudb.cludn.mongodb.net/setu?retryWrites=true&w=majority" -e db="setu" -e col="setu_v5" setuapi:v1.1
