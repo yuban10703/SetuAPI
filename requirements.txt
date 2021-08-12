@@ -1,0 +1,3 @@
+fastapi
+motor
+orjson
