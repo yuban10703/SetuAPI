@@ -2,6 +2,7 @@ from typing import Set, Optional
 
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import ORJSONResponse
+from gunicorn.glogging import logging
 
 from .database import find_setu
 from .model import Item, Setu_out
@@ -20,6 +21,7 @@ app = FastAPI(
 async def setu_get(r18: Optional[int] = Query(0, ge=0, le=2),
                    num: Optional[int] = Query(1, ge=1, le=30),
                    tags: Set[str] = Query(set())):
+    logging.info('{0}SETU: tag:[{1}] r18:[{2}] num:[{3}]{4}'.format('>' * 10, tags, r18, num, '<' * 10))
     setus = await find_setu(r18, num, tags)
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
@@ -28,6 +30,7 @@ async def setu_get(r18: Optional[int] = Query(0, ge=0, le=2),
 
 @app.post("/setu", response_model=Setu_out, response_class=ORJSONResponse)
 async def setu_post(item: Item):
+    logging.info('{0}SETU: tag:[{1}] r18:[{2}] num:[{3}]{4}'.format('>' * 10, item.tags, item.r18, item.num, '<' * 10))
     setus = await find_setu(item.r18, item.num, item.tags)
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
