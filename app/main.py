@@ -27,7 +27,7 @@ app = FastAPI(
 async def setu_get(r18: Optional[int] = Query(0, ge=0, le=2),
                    num: Optional[int] = Query(1, ge=1, le=30),
                    tags: Set[str] = Query(set())):
-    logger.info('{0}SETU: tag:[{1}] r18:[{2}] num:[{3}]{4}'.format('>' * 10, tags, r18, num, '<' * 10))
+    logger.info('r18:[{r18}] num:[{num}] tags:[{tags}]'.format(tags=tags, r18=r18, num=num))
     setus = await find_setu(r18, num, tags)
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
@@ -36,7 +36,7 @@ async def setu_get(r18: Optional[int] = Query(0, ge=0, le=2),
 
 @app.post("/setu", response_model=Setu_out, response_class=ORJSONResponse)
 async def setu_post(item: Item):
-    logger.info('{0}SETU: tag:[{1}] r18:[{2}] num:[{3}]{4}'.format('>' * 10, item.tags, item.r18, item.num, '<' * 10))
+    logger.info('r18:[{r18}] num:[{num}] tags:[{tags}]'.format(tags=item.tags, r18=item.r18, num=item.num))
     setus = await find_setu(item.r18, item.num, item.tags)
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
