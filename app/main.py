@@ -5,8 +5,8 @@ from fastapi import FastAPI, Query, HTTPException
 from fastapi.logger import logger
 from fastapi.responses import ORJSONResponse
 
-from .database import find_setu
-from .model import Item, Setu_out
+from app.database import find_setu
+from app.model import Item, Setu_out
 
 gunicorn_logger = logging.getLogger('gunicorn.error')
 logger.handlers = gunicorn_logger.handlers
@@ -46,4 +46,4 @@ async def setu_post(item: Item):
 if __name__ == '__main__':
     import uvicorn
 
-    uvicorn.run('main:app', host="0.0.0.0", port=8080, reload=True)
+    uvicorn.run('main:app', host="0.0.0.0", port=8084, reload=True)
