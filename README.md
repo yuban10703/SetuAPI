@@ -22,5 +22,12 @@ https://setu.yuban10703.xyz/docs
 | count | int  | data内的数据数量 |
 | data | array | setu列表 |
 
+### docker
+`docker build -t setuapi:v1.7 .
+`
 
-
+`
+docker run -d -p 9001:80 -e mongodb="mongodb+srv://username:password@cludn.mongodb.net/setu?retryWrites=true&w=majority" -e db="setu" -e col="setu_v5" -e LOG_LEVEL="debug" setuapi:v1.7
+`
+### 感谢
+[cloud.mongodb.com]()
