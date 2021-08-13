@@ -1,7 +1,7 @@
-import re
 from typing import Set, Optional
 
 from fastapi import FastAPI, Query, HTTPException
+from fastapi.responses import ORJSONResponse
 
 from .database import find_setu
 from .model import Item, Setu_out
@@ -16,36 +16,22 @@ app = FastAPI(
 )
 
 
-@app.get('/setu', response_model=Setu_out)
+@app.get('/setu', response_model=Setu_out, response_class=ORJSONResponse)
 async def setu_get(r18: Optional[int] = Query(0, ge=0, le=2),
                    num: Optional[int] = Query(1, ge=1, le=30),
                    tags: Set[str] = Query(set())):
-    condition: dict = {} if r18 == 2 else {'r18': bool(r18)}
-    condition_and = []
-    for tag in tags:
-        if not tag.isspace():  # tag不为空时
-            condition_and.append({'tags': re.compile(tag.strip(), re.I)})
-    if condition_and:
-        condition["$and"] = condition_and
-    setus = await find_setu(condition, num)
+    setus = await find_setu(r18, num, tags)
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
-    return {'code': 200, 'count': len(setus), 'tags': [i['tags'].pattern for i in condition_and], 'data': setus}
+    return {'code': 200, 'count': len(setus), 'tags': [tag for tag in tags if not tag.isspace()], 'data': setus}
 
 
-@app.post("/setu", response_model=Setu_out)
+@app.post("/setu", response_model=Setu_out, response_class=ORJSONResponse)
 async def setu_post(item: Item):
-    condition: dict = {} if item.r18 == 2 else {'r18': bool(item.r18)}
-    condition_and = []
-    for tag in item.tags:
-        if not tag.isspace():  # tag不为空时
-            condition_and.append({'tags': re.compile(tag.strip(), re.I)})
-    if condition_and:
-        condition['$and'] = condition_and
-    setus = await find_setu(condition, item.num)
+    setus = await find_setu(item.r18, item.num, item.tags)
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
-    return {'code': 200, 'count': len(setus), 'tags': [i['tags'].pattern for i in condition_and], 'data': setus}
+    return {'code': 200, 'count': len(setus), 'tags': [tag for tag in item.tags if not tag.isspace()], 'data': setus}
 
 
 if __name__ == '__main__':
