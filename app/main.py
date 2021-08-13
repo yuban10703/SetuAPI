@@ -1,19 +1,25 @@
+import logging
 from typing import Set, Optional
 
 from fastapi import FastAPI, Query, HTTPException
+from fastapi.logger import logger
 from fastapi.responses import ORJSONResponse
-from gunicorn.glogging import logging
 
 from .database import find_setu
 from .model import Item, Setu_out
 
+gunicorn_logger = logging.getLogger('gunicorn.error')
+logger.handlers = gunicorn_logger.handlers
+
+if __name__ != "main":
+    logger.setLevel(gunicorn_logger.level)
+else:
+    logger.setLevel(logging.DEBUG)
+
 app = FastAPI(
     title="setu",
-    description="emmm",
-    version="0.1.0",
-    # openapi_url="/fastapi/data_manger.json",
-    # docs_url="/fastapi/docs",
-    # redoc_url="/fastapi/redoc"
+    description="https://github.com/yuban10703/SetuAPI",
+    version="0.1.0"
 )
 
 
