@@ -17,7 +17,7 @@ https://setu.yuban10703.xyz/docs
 
 | 字段名 | 数据类型 | 说明 |
 | ------ | -------- | ---- |
-| code | int  | 200为正常,也没有其他返回... |
+| detail | str  | 没东西就是正常 |
 | tags | array[string]  | 你请求的时候发送的tags |
 | count | int  | data内的数据数量 |
 | data | array | setu列表 |

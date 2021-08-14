@@ -6,7 +6,7 @@ from .setu_data import Setu
 
 
 class Setu_out(BaseModel):
-    code: int
+    detail: str = ''
     count: int
     tags: List[str]
     data: List[Setu]
