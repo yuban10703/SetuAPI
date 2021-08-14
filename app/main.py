@@ -19,7 +19,7 @@ else:
 app = FastAPI(
     title="setu",
     description="https://github.com/yuban10703/SetuAPI",
-    version="0.1.1"
+    version="0.1.2"
 )
 
 
