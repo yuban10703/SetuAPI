@@ -22,6 +22,9 @@ https://setu.yuban10703.xyz/docs
 | count | int  | data内的数据数量 |
 | data | array | setu列表 |
 
+### mongodb
+要给r18,tags字段分别建索引
+
 ### docker
 `docker build -t setuapi:v1.7 .
 `
