@@ -30,4 +30,4 @@ https://setu.yuban10703.xyz/docs
 docker run -d -p 9001:80 -e mongodb="mongodb+srv://username:password@cludn.mongodb.net/setu?retryWrites=true&w=majority" -e db="setu" -e col="setu_v5" -e LOG_LEVEL="debug" setuapi:v1.7
 `
 ### 感谢
-[cloud.mongodb.com](cloud.mongodb.com)
+https://cloud.mongodb.com
