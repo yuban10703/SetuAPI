@@ -1,6 +1,12 @@
 # SetuAPI
 
-数据库在release里
+
+
+**数据库在release里**
+
+API: https://setu.yuban10703.xyz/setu
+
+请求方法:GET,POST
 
 ### API文档地址
 
@@ -28,18 +34,44 @@ https://setu.yuban10703.xyz/docs
 | 字段名 | 数据类型 | 说明 |
 | ------ | -------- | ---- |
 | artwork |  array[artwork] | 画廊的标题和P站id |
-| author | array[string]  | 作者的名字和P站ID |
+| author | array[author] | 作者的名字和P站ID |
 | count | integer  | 获取到的数量 |
 | sanity_level | integer | P站给的字段 可能是色情等级吧|
 |  r18  |  boolean  |  是否R18 |
 | page |  integer  |   作品在画廊的第几P(从0开始算)  |
-|  create_date |  string($date-time)  | P站的字段 应该是上传日期吧(反正用不到)  |
+|  create_date |  string($date-time)  | P站的字段 应该是最后更新日期 |
 | size | array[size] | 图片的长宽 |
 | tags | array[string]  | 图片的标签 |
 | urls | array[urls] | 图片的链接 |
 
 ### **artwork**
-    pass
+
+| 字段名 | 数据类型 | 说明        |
+| ------ | -------- | ----------- |
+| title  | string   | 作品标题    |
+| id     | integer  | 作品的P站ID |
+
+### **author**
+
+| 字段名 | 数据类型 | 说明        |
+| ------ | -------- | ----------- |
+| name   | string   | 作者名字    |
+| id     | integer  | 作者的P站ID |
+
+### **size**
+
+| 字段名 | 数据类型 | 说明 |
+| ------ | -------- | ---- |
+| width  | integer  | 宽   |
+| height | integer  | 高   |
+
+### **artwork**
+
+| 字段名   | 数据类型     | 说明     |
+| -------- | ------------ | -------- |
+| original | string($uri) | 原图链接 |
+| large    | string($uri) | ......   |
+| medium   | string($uri) | ......   |
 
 
 ### docker
