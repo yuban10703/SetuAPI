@@ -6,6 +6,7 @@
 
 https://setu.yuban10703.xyz/docs
 
+### 请求字段
 
 | 字段  | 类型          | 说明                       |
 | ----- | ------------- | -------------------------- |
@@ -13,24 +14,54 @@ https://setu.yuban10703.xyz/docs
 | num   | integer       | 数量,最大30                |
 | tags   | array[string] | 可以传入多个tag            |
 
-**返回值**
+### **返回数据**
 
 | 字段名 | 数据类型 | 说明 |
 | ------ | -------- | ---- |
-| detail | str  | 没东西就是正常 |
+| detail | string  | 没东西就是正常 |
 | tags | array[string]  | 你请求的时候发送的tags |
-| count | int  | data内的数据数量 |
-| data | array | setu列表 |
+| count | integer  | data内的数据数量 |
+| data | array[setu] | setu列表 |
 
-### mongodb
-要给r18,tags字段分别建索引
+### **setu**
+
+| 字段名 | 数据类型 | 说明 |
+| ------ | -------- | ---- |
+| artwork |  array[artwork] | 画廊的标题和P站id |
+| author | array[string]  | 作者的名字和P站ID |
+| count | integer  | 获取到的数量 |
+| sanity_level | integer | P站给的字段 可能是色情等级吧|
+|  r18  |  boolean  |  是否R18 |
+| page |  integer  |   作品在画廊的第几P(从0开始算)  |
+|  create_date |  string($date-time)  | P站的字段 应该是上传日期吧(反正用不到)  |
+| size | array[size] | 图片的长宽 |
+| tags | array[string]  | 图片的标签 |
+| urls | array[urls] | 图片的链接 |
+
+### **artwork**
+    pass
+
 
 ### docker
-`docker build -t setuapi:v1.7 .
-`
 
-`
-docker run -d -p 9001:80 -e mongodb="mongodb+srv://username:password@cludn.mongodb.net/setu?retryWrites=true&w=majority" -e db="setu" -e col="setu_v5" -e LOG_LEVEL="debug" setuapi:v1.7
-`
+~~~
+docker build -t setuapi:v1.7 .
+~~~
+
+~~~
+docker run -d \
+-p 9001:80 \
+-e mongodb="mongodb+srv://username:password@cludn.mongodb.net/setu?retryWrites=true&w=majority" \
+-e db="setu" \
+-e col="setu_v5" \
+-e LOG_LEVEL="debug" \
+setuapi:v1.7
+~~~
+
+### mongodb
+
+要给r18,tags字段分别建索引
+
 ### 感谢
+
 https://cloud.mongodb.com
