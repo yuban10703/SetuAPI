@@ -8,9 +8,13 @@ API: https://setu.yuban10703.xyz/setu
 
 请求方法:GET,POST
 
+返回数据为JSON
+
 ### API文档地址
 
 https://setu.yuban10703.xyz/docs
+
+
 
 ### 请求字段
 
