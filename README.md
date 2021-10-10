@@ -69,13 +69,13 @@ https://setu.yuban10703.xyz/docs
 | width  | integer  | 宽   |
 | height | integer  | 高   |
 
-### **artwork**
+### **urls**
 
 | 字段名   | 数据类型     | 说明     |
 | -------- | ------------ | -------- |
-| original | string($uri) | 原图链接 |
-| large    | string($uri) | ......   |
-| medium   | string($uri) | ......   |
+| original | string($uri) | 链接(画质:original) |
+| large    | string($uri) | 链接(画质:large)   |
+| medium   | string($uri) | 链接(画质:medium)  |
 
 
 ### docker
