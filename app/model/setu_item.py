@@ -8,3 +8,13 @@ class Item(BaseModel):
     num: Optional[int] = Field(1, ge=1, le=50)
     tags: Set[str] = set()
     replace_url: Optional[HttpUrl] = None
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "r18": "0",
+                "num": "1",
+                "tags": [],
+                "replace_url": "https://i.pixiv.cat",
+            }
+        }
