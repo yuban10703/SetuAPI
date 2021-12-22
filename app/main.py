@@ -1,5 +1,4 @@
 import logging
-import os
 from typing import Set, Optional
 
 from fastapi import FastAPI, Query, HTTPException
@@ -27,6 +26,7 @@ app = FastAPI(
 
 @app.on_event("startup")
 async def on_app_start():
+    import os
     await database.connect(os.getenv('mongodb'), os.getenv('db'), os.getenv('col'))
 
 
@@ -38,7 +38,7 @@ async def on_app_shutdown():
 @app.get('/setu', response_model=Setu_out, response_class=ORJSONResponse)
 async def setu_get(
         r18: Optional[int] = Query(0, ge=0, le=2),
-        num: Optional[int] = Query(1, ge=1, le=30),
+        num: Optional[int] = Query(1, ge=1, le=50),
         tags: Set[str] = Query(set()),
         replace_url: Optional[HttpUrl] = None):
     setus = await get_setu_data(r18, num, tags, replace_url)

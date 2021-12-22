@@ -14,12 +14,12 @@ https://setu.yuban10703.xyz/docs
 
 ### 请求字段
 
-| 字段   | 类型      | 说明                                                          |
-|------|---------|-------------------------------------------------------------|
-| r18  | integer | 0:性感,1:色情,2:all                                             |
-| num  | integer | 数量,最大30                                                     |
-| tags | array[string] | 可以传入多个tag                                                   |
-| replace_url | HttpUrl | 反代的链接,用于替换默认的https://i.pximg.net;例如https://i.pixiv.cat      |
+| 字段   | 类型      | 说明                                                      |
+|------|---------|---------------------------------------------------------|
+| r18  | integer | 0:性感,1:色情,2:all                                         |
+| num  | integer | 数量,最大50                                                 |
+| tags | array[string] | 可以传入多个tag                                               |
+| replace_url | HttpUrl | 反代的链接,用于替换默认的https://i.pximg.net  例如https://i.pixiv.cat |
 
 ### **返回数据**
 
