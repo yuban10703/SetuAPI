@@ -61,5 +61,5 @@ class Item(BaseModel):
 class Setu_out(BaseModel):
     detail: str = ''
     count: int
-    tags: List[str]
+    tags: Set[str]
     data: List[Setu]
