@@ -74,25 +74,12 @@ https://setu.yuban10703.xyz/docs
 | large    | string($uri) | 链接(画质:large)   |
 | medium   | string($uri) | 链接(画质:medium)  |
 
-### docker
-
-~~~
-docker build -t setuapi:v1.7 .
-~~~
-
-~~~
-docker run -d \
--p 9001:80 \
--e mongodb="mongodb+srv://username:password@cludn.mongodb.net/setu?retryWrites=true&w=majority" \
--e db="setu" \
--e col="setu_v5" \
--e LOG_LEVEL="debug" \
-setuapi:v1.7
-~~~
-
 ### mongodb
 
-要给r18,tags字段分别建索引
+要给r18,delete,tags建索引
+
+db.your_collection.createIndex({ r18: 1, delete: 1, tags: "text" })
+
 
 ### 感谢
 

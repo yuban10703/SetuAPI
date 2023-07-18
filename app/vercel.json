@@ -1,0 +1,19 @@
+{
+    "builds": [
+        {
+            "src": "main.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "headers": { "Location": "/docs" },
+            "status": 307
+        },
+        {
+            "src": "/.*",
+            "dest": "main.py"
+        }
+    ]
+}
