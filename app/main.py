@@ -30,7 +30,7 @@ async def setu_get(
         replace_url: Optional[HttpUrl] = None,
 ):
     filtered_tags = {tag.strip() for tag in tags if tag.strip()}
-    setus = await get_setu_data(r18, num, filtered_tags, replace_url)
+    setus = await get_setu_data(r18, num, filtered_tags, str(replace_url))
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
     return {
@@ -42,7 +42,7 @@ async def setu_get(
 
 @app.post("/setu", response_class=ORJSONResponse)
 async def setu_post(item: Item):
-    setus = await get_setu_data(item.r18, item.num, item.tags, item.replace_url)
+    setus = await get_setu_data(item.r18, item.num, item.tags, str(item.replace_url))
     if not setus:
         raise HTTPException(status_code=404, detail="色图库中没找到色图~")
     return {
